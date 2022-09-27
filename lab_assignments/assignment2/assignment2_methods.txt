@@ -1,0 +1,7 @@
+FastQC was installed in the plb812 conda environment using the Bioconda channel.
+
+All the fastq.gz files were placed in the same directory as FastQC and a shell script was written to run fastqc analysis on the files, with the output file format indicated as fastq and all output files were directed to be added to a new directory.
+
+This shell script was submitted to the queue system in the MSU HPCC.
+
+The output directory of the all fastqc.html files was pushed to GitHub in addition to a copy of the shell script.
