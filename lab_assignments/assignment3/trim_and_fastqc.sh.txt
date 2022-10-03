@@ -1,0 +1,30 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name trim_and_fastqc
+#SBATCH --output=%x-%j.SLURMout
+
+#Change to current working directory
+cd ${PBS_O_WORKDIR}
+
+#Add conda environment to the path
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+
+cutadapt -q 10 -o SRR3452717_1_trimmed.fastq -p SRR3452717_2_trimmed.fastq SRR3452717_1.fastq.gz SRR3452717_2.fastq.gz
+
+cutadapt -q 10 -o SRR3452718_1_trimmed.fastq -p SRR3452718_2_trimmed.fastq SRR3452718_1.fastq.gz SRR3452718_2.fastq.gz
+
+cutadapt -q 10 -o SRR3452719_1_trimmed.fastq -p SRR3452719_2_trimmed.fastq SRR3452719_1.fastq.gz SRR3452719_2.fastq.gz
+
+cutadapt -q 10 -o SRR3452720_1_trimmed.fastq -p SRR3452720_2_trimmed.fastq SRR3452720_1.fastq.gz SRR3452720_2.fastq.gz
+
+cutadapt -q 10 -o SRR3452721_1_trimmed.fastq -p SRR3452721_2_trimmed.fastq SRR3452721_1.fastq.gz SRR3452721_2.fastq.gz
+
+cutadapt -q 10 -o SRR3452722_1_trimmed.fastq -p SRR3452722_2_trimmed.fastq SRR3452722_1.fastq.gz SRR3452722_2.fastq.gz
+
+fastqc -f fastq -o trimmed_fastqc_data *trimmed.fastq
