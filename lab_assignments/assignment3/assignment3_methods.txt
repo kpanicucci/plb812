@@ -1,0 +1,9 @@
+cutadapt was installed in the plb812 conda environment using the Bioconda channel.
+
+All the original fastq.gz files were moved to the scratch directory and a shell script was written to run cutadapt and fastqc analysis on the files. According to all the previous fastqc.html files before trimming, there was no adapter contamination, so no adapters needed to be removed. Since there were no adapters, just basic quality trimming was conducted. The quality score for trimming was indicated as 10. This was paired end data, so the cutadapt command was written accordingly.
+
+Once trimmed, the shell script ran fastqc on all the trimmed files. The output file format was indicated as fastq and all output files were directed to be added to a new directory.
+
+This shell script was submitted to the queue system in the MSU HPCC.
+
+The output directory of the all fastqc.html files of the trimmed data was pushed to GitHub in addition to a copy of the shell script.
