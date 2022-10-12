@@ -1,0 +1,5 @@
+Hisat2, gffread, and samtools were installed in the plb812 conda environment using the Bioconda channel.
+
+To build the index, the gene annotation (gff file) was first converted to a gtf file using gffread. Using this gtf file, splice sites and exons were extracted using hisat2_extract_splice_sites and hisat2_extract_exons. A shell script was written to build the index using the exon file, splice site file, and the genome assembly file. The output name was sorghum_index. This script was uploaded to GitHub.
+
+Alignment for each trimmed fastq file was accomplished using hisat2. This was done using 10 threads to expedite the process. The SRR data was paired-end, so the hisat2 command was written accordingly. The output was converted to a BAM file using samtools view with 4 threads and the output was sorted using samtools sort, again with 4 threads. The output gave the total number of read pairs and how many aligned concordantly (and how many times). This information was compiled into a csv table titled "alignment_stats" and was pushed to GitHub.
