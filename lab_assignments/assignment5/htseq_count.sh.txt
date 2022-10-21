@@ -1,0 +1,34 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name htseq_count_phyto
+#SBATCH --output=%x-%j.SLURMout
+
+#Change to current working directory
+cd ${PBS_O_WORKDIR}
+
+#Add conda environment to the path
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+Module load GCC/7.3.0-2.30
+Module load OpenMPI/3.1.1
+
+Module load HTSeq/0.11.2-Python-3.6.6
+
+
+htseq-count -f bam -r pos -s no SRR3452717_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR345271_phyto.tsv
+
+htseq-count -f bam -r pos -s no SRR3452718_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR3452718_phyto.tsv
+
+htseq-count -f bam -r pos -s no SRR3452719_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR3452719_phyto.tsv
+
+htseq-count -f bam -r pos -s no SRR3452720_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR3452720_phyto.tsv
+
+htseq-count -f bam -r pos -s no SRR3452721_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR3452721_phyto.tsv
+
+htseq-count -f bam -r pos -s no SRR3452722_align_phyto.bam Sbicolor_454_v3.1.1.gene.gtf > read_count_unstranded_SRR3452722_phyto.tsv
+
