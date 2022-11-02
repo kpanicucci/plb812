@@ -1,0 +1,22 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name topGO_table
+#SBATCH --output=%x-%j.SLURMout
+
+#Change to current working directory
+cd ${PBS_O_WORKDIR}
+
+#Add conda environment to the path
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+
+cat gene_list | while read line
+do 
+terms=$(grep $line Sbicolor_454_v3.1.1.annotation_info.txt | cut -f10 | tr ',' '\n' | sort | uniq | sed '/^$/d' | tr '\n' ',' | sed 's/\,$//')
+echo "$line $terms" | tr ' ' '\t' | sed 's/\,/\,\ /g' >> Sorghum_topGO.tsv
+done
