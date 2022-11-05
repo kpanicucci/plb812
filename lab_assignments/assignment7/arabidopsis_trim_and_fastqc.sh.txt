@@ -1,0 +1,21 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name arabidopsis_trim_and_fastqc
+#SBATCH --output=%x-%j.SLURMout
+
+#Change to current working directory
+cd ${PBS_O_WORKDIR}
+
+#Add conda environment to the path
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+
+cutadapt -q 25 -o SRR492407_1_trimmed.fastq -p SRR492407_2_trimmed.fastq SRR492407_1.fastq.gz SRR492407_2.fastq.gz
+
+
+fastqc -f fastq -o trimmed_fastqc_data *trimmed.fastq
