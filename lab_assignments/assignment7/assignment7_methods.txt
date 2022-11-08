@@ -1,0 +1,5 @@
+The Arabidopsis genome was downloaded from Phytozome and SRA accession SRR492407 was downloaded to the MSU HPCC using the SRA toolkit.
+
+The SRA data was then quality checked using FastQC and moved to its own directory. Checking the FastQC output data revealed no adapter contamination and so the SRA data was trimmed just for quality using CutAdapt. The data was paired end, so the command was written accordingly, and low quality bases with a phred score of < 25 were trimmed from the ends. FastQC was then run again on this trimmed data. FastQC and CutAdapt were run as shell scripts and those scripts have been uploaded to GitHub, as well as the FastQC outputs both before and after quality trimming.
+
+BWA was installed into plb812 environment using BioConda. The Arabidopsis genome was indexed using BWA index, then the trimmed fastq files were aligned using BWA mem with the index genome. The alignment was then converted to a sorted bam file using samtools view and samtools sort. Samtools flagstat was then used to output the mapping statistics into their own file. This file was uploaded to GitHub.
