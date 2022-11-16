@@ -1,0 +1,5 @@
+Picard was installed into plb812 environment using BioConda. The alignment file was run using the MarkDuplicates command to mark all the duplicate reads and a new alignment bam file was created as the output and a text file for the metrics was also created. This command was run as a script and that script has been uploaded to GitHub.
+
+The new bam file with the duplicates marked was used with AddOrReplaceReadGroups to add read groups to the file, and another bam file was outputted. Again, this command was run as a script and the script has been uploaded to GitHub.
+
+The reference genome file was indexed using samtools faidx. GATK was downloaded from GitHub and a conda environment was created for it. Variants were called from the read group alignment file using HaplotypeCaller and the reference genome and an output vcd file was created. The script used for this command has been uploaded to GitHub.
