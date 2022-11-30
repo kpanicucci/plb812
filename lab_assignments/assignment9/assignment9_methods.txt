@@ -1,0 +1,3 @@
+A new conda environment for OrthoFinder was created and OrthoFinder was then installed in that environment using the BioConda channel. Protein sequence files for A. thaliana, A. trichopoda, and O. Sativa were downloaded from Phytozome. These three files were all placed in the same directory.
+
+Orthogroups were then identified using OrthoFinder. OrthoFinder was run directly in the command line and pointed to the directory containing the fasta files. The results of this analysis were recorded in a text file, and that file has been uploaded to GitHub.
